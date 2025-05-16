@@ -1,5 +1,5 @@
 import { http, cookieStorage, createConfig, createStorage } from "wagmi";
-import { avalancheFuji, monadTestnet } from "wagmi/chains";
+import { baseSepolia } from "wagmi/chains";
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 import { defineChain } from "viem";
 
@@ -26,14 +26,14 @@ export const educhain = defineChain({
 
 export function getConfig(connectors: ReturnType<typeof connectorsForWallets>) {
     return createConfig({
-        chains: [monadTestnet],
+        chains: [baseSepolia],
         connectors,
         storage: createStorage({
             storage: cookieStorage,
         }),
         ssr: true,
         transports: {
-            [monadTestnet.id]: http(),
+            [baseSepolia.id]: http(),
         },
     });
 }
